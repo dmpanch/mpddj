@@ -11,6 +11,7 @@ from gi.repository import GObject as gobject
 import time
 import gettext
 import config
+import ntpath
 
 from signal import signal, SIGINT, SIGTERM, SIGABRT
 
@@ -114,8 +115,8 @@ def command_handler(check_super_user = False):
 
 
 class Quota(object):
-    limit = 10
-    next_limit = 5
+    limit = 5
+    next_limit = 2
 
     def __repr__(self):
         return "Quota({0}, {1}".format(self.username, self.history)
@@ -345,7 +346,7 @@ class MPDDJ(object):
 
     @command_handler()
     def start(self):
-        self.send_text(_('Welcome to MPD DJ!'))
+        self.send_text(_('Welcome to nameyourradio DJ!'))
 
     @access_mpd(True)
     @command_handler(check_super_user=True)
@@ -397,7 +398,7 @@ class MPDDJ(object):
         if quota.can_order() or quota.username == self.config['SUPER_USER'] or alone:
             try:
                 playlist = self.client.playlistinfo()
-                if len(playlist) > 15:
+                if len(playlist) > 5:
                     self.send_text(_('Too many songs already, please wait.'))
                     return
                 if isinstance(song, list):
@@ -464,10 +465,10 @@ class MPDDJ(object):
     def help(self):
         help_text = [
             _("start - Description"),
-            _("add - Add song"),
+            _("add - Add song by full path"),
             _("sample - Randomly list some songs"),
-            _("status - DJ Status"),
-            _("stats - DJ stats"),
+            _("status - Now playing"),
+            _("stats - Songs quantity"),
             _("order - Order a song"),
             _("searchorder - Search and order first match song"),
             _("next - Skip current song"),
@@ -475,7 +476,7 @@ class MPDDJ(object):
             _("search - Search song"),
             _("searchadd - Search and add first match song"),
             _("playlist - Show current playlist"),
-            _("list - List files"),
+            _("list - List files (don't do this)"),
             _("stream - Get stream address"),
             _("help - Show this help"),
         ]
