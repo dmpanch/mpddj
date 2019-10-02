@@ -12,20 +12,20 @@ Tested on Python 3.4.2 and 3.5.
 
 Setcommands list example for BotFather:
 
-add - Add song by full path
-sample - Randomly list some songs
-status - Now playing
-stats - Songs quantity
-order - Order a song
-searchorder - Search and order first match song
-next - Skip current song
-history - Order history
-search - Search song
-searchadd - Search and add first match song
-playlist - Show current playlist
-list - List files (don't do this!)
-stream - Get stream address
-help - Show this help
+* add - Add song by full path
+* sample - Randomly list some songs
+* status - Now playing
+* stats - Songs quantity
+* order - Order a song
+* searchorder - Search and order first match song
+* next - Skip current song
+* history - Order history
+* search - Search song
+* searchadd - Search and add first match song
+* playlist - Show current playlist
+* list - List files (don't do this!)
+* stream - Get stream address
+* help - Show this help
 
 
 Feature:
